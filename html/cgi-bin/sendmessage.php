@@ -26,7 +26,7 @@ $body = "Hi!\r\n\r\nA visitor filled out a contact form on $wsrv. Here are the d
 
 $mail_orig = "MIME_Version: 1.0\r\nContent-type: text/plain; charset=UTF-8\r\nFrom: $from\r\nTo: $to\r\nSubject: ($wsrv) Contact form was filled out\r\Reply-To: $sndr\r\n\r\n$body\r\n";
 
-$file = fopen('/smtp-cli/message.txt', 'w') or die(file_get_contents("/fail.html"));
+$file = fopen('/smtp-cli/message.txt', 'w') or die(file_get_contents("../fail.html"));
 fwrite($file, $mail_orig);
 fclose($file);
 
@@ -34,7 +34,7 @@ $response = shell_exec("/smtp-cli/smtp-cli --server=$srvr --user $from --passwor
 
 unlink('/smtp-cli/message.txt');
 
-echo file_get_contents("/hvala.html");
+echo file_get_contents("../hvala.html");
 
 function string_isnullorwhitespace($str){
  return ($str === null || trim($str) === '');
