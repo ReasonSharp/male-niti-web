@@ -1,3 +1,4 @@
+/* You can add global styles to this file, and also import other style files */
 @charset "UTF-8";
 
 .maleniti { background-color: #FFF }
@@ -6,7 +7,7 @@
  color: #3433B0;
  text-transform: uppercase;
  text-shadow: 5px 5px #BBB;
- font-size: ;
+ /* font-size: ; */
 }
 
 .site-description {
