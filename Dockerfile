@@ -1,15 +1,13 @@
-FROM alpine:3.18.3 AS build
-ENV PATH="${PATH}:/sbin"
-RUN apk update && \
-    apk add --update nodejs npm
-COPY package*.json /app/
+FROM node:22.9.0-alpine3.20 AS build
 WORKDIR /app
-RUN npm i
+COPY package*.json /app/
+RUN npm ci
 COPY ./angular.json ./tsconfig* .
 COPY ./src ./src
 RUN npm run build
 
 FROM nginx:1.25.2
-COPY --from=build /app/dist/* /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 50002
 CMD [ "nginx", "-g", "daemon off;" ]
