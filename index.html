@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Male Niti — wireframe explorations</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Architects+Daughter&family=Special+Elite&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf7f0;
+    --ink: #1c1a17;
+    --ink-soft: #4a4640;
+    --ink-fade: #8a847a;
+    --rule: #1c1a17;
+
+    --accent-a: #2e3a6b;   /* Stitched - indigo */
+    --accent-b: #2d6a3a;   /* Console - green */
+    --accent-c: #b04a25;   /* Loom - rust */
+    --accent-d: #1f6a6a;   /* Workshop - teal */
+  }
+  html, body { margin: 0; padding: 0; background: #e9e4d8; color: var(--ink); }
+  body { font-family: 'Architects Daughter', system-ui, sans-serif; }
+
+  /* Sketchy primitives shared across variants */
+  .mn-paper {
+    background: var(--paper);
+    background-image:
+      radial-gradient(rgba(0,0,0,.025) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,.02) 1px, transparent 1px);
+    background-size: 22px 22px, 7px 7px;
+    background-position: 0 0, 3px 4px;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .mn-paper::before {
+    /* paper fiber overlay */
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+      repeating-linear-gradient(91deg, transparent 0 40px, rgba(0,0,0,.012) 40px 41px),
+      repeating-linear-gradient(2deg, transparent 0 60px, rgba(0,0,0,.012) 60px 61px);
+  }
+  .mn-paper > * { position: relative; }
+
+  /* Hand-drawn dashed box */
+  .mn-box {
+    border: 1.5px dashed var(--ink);
+    border-radius: 4px;
+    padding: 14px;
+    background: transparent;
+    position: relative;
+  }
+  .mn-box-solid {
+    border: 1.5px solid var(--ink);
+    border-radius: 4px;
+    padding: 14px;
+    background: transparent;
+    position: relative;
+  }
+  .mn-tag {
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: .04em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  .mn-caveat { font-family: 'Caveat', cursive; font-weight: 700; line-height: 1.02; }
+  .mn-hand { font-family: 'Architects Daughter', sans-serif; }
+  .mn-elite { font-family: 'Special Elite', monospace; }
+  .mn-shadow { font-family: 'Shadows Into Light', cursive; }
+
+  /* Underline scribbles */
+  .mn-u { background-image: linear-gradient(transparent 88%, currentColor 88%, currentColor 92%, transparent 92%); background-size: 100% 100%; }
+
+  /* Animated thread strokes */
+  @keyframes mn-thread-draw {
+    0%   { stroke-dashoffset: var(--mn-len, 1200); }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes mn-thread-sway {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-2px); }
+    100% { transform: translateY(2px); }
+  }
+  .mn-thread {
+    stroke-dasharray: var(--mn-len, 1200);
+    stroke-dashoffset: var(--mn-len, 1200);
+    animation: mn-thread-draw var(--mn-dur, 4s) var(--mn-delay, 0s) ease-out forwards;
+  }
+  .mn-thread-sway {
+    transform-origin: center;
+    animation: mn-thread-sway 6s ease-in-out infinite alternate;
+  }
+  /* Knot dot */
+  .mn-knot { fill: var(--ink); }
+
+  /* Hatching fill for placeholder images */
+  .mn-hatch {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 9px, rgba(0,0,0,.06) 9px 10px),
+      var(--paper);
+  }
+
+  /* Stitched border for workshop variant */
+  .mn-stitch {
+    border: 1.5px solid var(--ink);
+    box-shadow:
+      inset 0 0 0 3px var(--paper),
+      inset 0 0 0 4px var(--ink),
+      inset 0 0 0 5px var(--paper);
+    border-style: dashed;
+  }
+
+  /* No motion preference respect */
+  @media (prefers-reduced-motion: reduce) {
+    .mn-thread, .mn-thread-sway { animation: none !important; stroke-dashoffset: 0 !important; }
+  }
+  body.mn-no-motion .mn-thread,
+  body.mn-no-motion .mn-thread-sway { animation: none !important; stroke-dashoffset: 0 !important; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="variant-stitched.jsx"></script>
+  <script type="text/babel" src="variant-stitched-v2.jsx"></script>
+  <script type="text/babel" src="variant-console.jsx"></script>
+  <script type="text/babel" src="variant-loom.jsx"></script>
+  <script type="text/babel" src="variant-workshop.jsx"></script>
+  <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>

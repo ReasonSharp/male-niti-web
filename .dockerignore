@@ -1,0 +1,9 @@
+# Design-host artifacts and raw asset dumps — not read by dev-server.js or
+# any served page, just bulk (the zip alone is ~3MB).
+Test project Alpha.zip
+.thumbnail
+scraps
+uploads
+
+Dockerfile
+.dockerignore
