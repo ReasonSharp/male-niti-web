@@ -21,27 +21,11 @@ function App() {
           id="male-niti"
           title={tweaks.lang === 'hr' ? "Male Niti — pravci za web" : "Male Niti — directions for the site"}
           subtitle={tweaks.lang === 'hr'
-            ? "A v2 je dorađena verzija po novim bilješkama. Ostale skice su zadržane za usporedbu."
-            : "A v2 is the refined direction per the new notes. Other sketches kept for reference."}>
+            ? "A v2 je dorađena verzija po novim bilješkama."
+            : "A v2 is the refined direction per the new notes."}>
 
           <DCArtboard id="stitched-v2" label="A v2 · Stitched — refined (indigo+green, MN monogram, blog)" width={760} height={3300}>
             <VariantStitchedV2 />
-          </DCArtboard>
-
-          <DCArtboard id="stitched" label="A · Stitched — original (for reference)" width={760} height={2900}>
-            <VariantStitched />
-          </DCArtboard>
-
-          <DCArtboard id="console" label="B · Console — dev studio / technical" width={760} height={2900}>
-            <VariantConsole />
-          </DCArtboard>
-
-          <DCArtboard id="loom" label="C · Loom — warm / personal" width={760} height={2900}>
-            <VariantLoom />
-          </DCArtboard>
-
-          <DCArtboard id="workshop" label="D · Workshop — playful / crafty" width={760} height={2900}>
-            <VariantWorkshop />
           </DCArtboard>
         </DCSection>
       </DesignCanvas>

@@ -11,10 +11,10 @@ This directory is not a git repo. Treat `Test project Alpha.zip`, `.thumbnail`, 
 ## Two parallel tracks
 
 ### 1. Wireframe exploration canvas (repo root)
-Entry point: **`index.html`**. Loads, in order: `design-canvas.jsx` → `tweaks-panel.jsx` → `shared.jsx` → `variant-stitched.jsx` → `variant-stitched-v2.jsx` → `variant-console.jsx` → `variant-loom.jsx` → `variant-workshop.jsx` → `app.jsx`.
+Entry point: **`index.html`**. Loads, in order: `design-canvas.jsx` → `tweaks-panel.jsx` → `shared.jsx` → `variant-stitched-v2.jsx` → `app.jsx`.
 
 - `design-canvas.jsx` is a generic, reusable "Figma-ish" pan/zoom canvas component (`DesignCanvas` / `DCSection` / `DCArtboard`) for laying out multiple design directions side by side, with drag-to-reorder, inline-editable labels, and a fullscreen focus overlay (←/→/Esc). It has no project-specific knowledge.
-- `app.jsx` composes the canvas: one `DCSection` containing five `DCArtboard`s, each rendering a different full-page design variant (`variant-*.jsx`) for comparison. **`variant-stitched-v2.jsx` is the current/refined direction** (per `app.jsx` comments); the other variants (`variant-stitched.jsx`, `variant-console.jsx`, `variant-loom.jsx`, `variant-workshop.jsx`) are earlier explorations kept for reference — check `app.jsx` before assuming a variant is still "live."
+- `app.jsx` composes the canvas: one `DCSection` containing a single `DCArtboard` rendering `variant-stitched-v2.jsx`, the current/refined direction. Earlier explorations (`variant-stitched.jsx`, `variant-console.jsx`, `variant-loom.jsx`, `variant-workshop.jsx`) have been removed.
 - `shared.jsx` holds primitives shared *only* across the wireframe variants: `LangCtx`/`T`/`useT` for bilingual copy, `SectionHead`, `Slot` (placeholder rectangle), `Thread` (animated SVG draw-on path), `SketchBtn`, `Squiggle`, `ScribbleArrow`, `Note` (sticky annotation), plus `COPY` and `LYRICS` copy tables. All exported onto `window` (no ES modules — everything is a global, order-of-`<script>`-tags matters).
 - Visual language for this track: hand-drawn/sketch aesthetic (dashed borders, Caveat/Architects Daughter/Special Elite/Shadows Into Light fonts, cross-hatched placeholder fills, animated "thread" SVG strokes) — see the `<style>` block in `index.html`.
 
