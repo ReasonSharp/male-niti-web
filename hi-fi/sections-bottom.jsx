@@ -350,6 +350,7 @@ function Contact() {
                 <option>{t('cijeli sustav — IoT, analitika, multi-tenant', 'whole system — IoT, analytics, multi-tenant')}</option>
                 <option>{t('održavanje postojećeg projekta', 'maintenance for an existing project')}</option>
                 <option>{t('nisam siguran/sigurna', 'not sure yet')}</option>
+                <option>{t('prigovor', 'complaint')}</option>
               </select>
             </div>
 
