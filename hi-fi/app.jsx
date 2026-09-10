@@ -22,7 +22,7 @@ function App() {
   return (
     <LangCtx.Provider value={tweaks.lang}>
       <div className="page">
-        <Header lang={tweaks.lang} setLang={setLang} />
+        <SiteHeader lang={tweaks.lang} setLang={setLang} />
         <Hero />
         <Services />
         <Process />
@@ -31,7 +31,7 @@ function App() {
         <Pricing />
         <Blog />
         <Contact />
-        <Footer />
+        <SiteFooter />
       </div>
 
       <TweaksPanel title="Tweaks">

@@ -180,6 +180,25 @@ components:
         users_en: { type: string, nullable: true }
         status_hr: { type: string, nullable: true }
         status_en: { type: string, nullable: true }
+        demo_url:
+          type: string
+          nullable: true
+          description: >
+            Absolute or site-relative URL of this project's live demo. Each
+            demo is a separately designed page built to that project's own
+            specification and is NOT part of this frontend — the API is the
+            only source for the link. Null hides the demo button entirely.
+          example: "https://demo.maleniti.com/iot-pipeline"
+        demo_label_hr: { type: string, nullable: true, example: "Pogledaj demo" }
+        demo_label_en: { type: string, nullable: true, example: "View the demo" }
+        post_slug:
+          type: string
+          nullable: true
+          description: >
+            Optional slug of a blog post describing this project's features.
+            When set, the work item renders a link to
+            blog-post.html?slug={post_slug}. Must match a BlogPost slug.
+          example: "sto-je-view-u-iot-sustavu"
 
     BlogPostSummary:
       type: object
@@ -199,6 +218,14 @@ components:
         excerpt_en: { type: string }
         read_hr: { type: string, example: "5 min čitanja" }
         read_en: { type: string, example: "5 min read" }
+        featured:
+          type: boolean
+          default: false
+          description: >
+            Marks the lead post shown large at the top of the blog index.
+            At most one post should set this; the newest is used otherwise.
+        lede_hr: { type: string, nullable: true, description: Standfirst shown on the index lead and post page }
+        lede_en: { type: string, nullable: true }
 
     BlogPost:
       allOf:
@@ -206,8 +233,23 @@ components:
         - type: object
           required: [body_hr, body_en]
           properties:
-            body_hr: { type: string, description: Full HTML or Markdown body }
-            body_en: { type: string }
+            body_hr:
+              type: array
+              description: >
+                Ordered body blocks. The post page renders each by `type`:
+                "p" = paragraph (the first one gets a drop cap),
+                "h" = section subheading, "q" = pull quote.
+              items: { $ref: '#/components/schemas/BodyBlock' }
+            body_en:
+              type: array
+              items: { $ref: '#/components/schemas/BodyBlock' }
+
+    BodyBlock:
+      type: object
+      required: [type, text]
+      properties:
+        type: { type: string, enum: [p, h, q] }
+        text: { type: string }
 
     ContactSubmission:
       type: object

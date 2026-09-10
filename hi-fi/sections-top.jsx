@@ -1,35 +1,5 @@
-// Male Niti — hi-fi sections (top): Header, Hero, Services, Process
-
-function Header({ lang, setLang }) {
-  return (
-    <header className="container">
-      <nav className="nav">
-        <a href="#" className="nav__brand" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Monogram s={42} stroke={2.9} />
-          <div className="flex-col">
-            <span className="nav__brand-name">Male Niti</span>
-            <span className="nav__brand-tag"><T hr="male web stranice · male aplikacije" en="small sites · small apps" /></span>
-          </div>
-        </a>
-
-        <div className="nav__links">
-          <a href="#usluge"><T hr="usluge" en="services" /></a>
-          <a href="#proces"><T hr="proces" en="process" /></a>
-          <a href="#radovi"><T hr="radovi" en="work" /></a>
-          <a href="#zasto"><T hr="o meni" en="about" /></a>
-          <a href="#bilješke"><T hr="bilješke" en="notes" /></a>
-          <a href="#kontakt"><T hr="kontakt" en="contact" /></a>
-        </div>
-
-        <div className="nav__lang">
-          <button className={lang === 'hr' ? 'active' : ''} onClick={() => setLang('hr')}>HR</button>
-          <span className="sep">·</span>
-          <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
-        </div>
-      </nav>
-    </header>
-  );
-}
+// Male Niti — hi-fi sections (top): Hero, Services, Process
+// (Header/Footer live in hi-fi/site-chrome.jsx, shared with the blog pages.)
 
 // ── Hero ────────────────────────────────────────────────────────────────────
 function Hero() {
@@ -196,4 +166,4 @@ function Process() {
   );
 }
 
-Object.assign(window, { Header, Hero, Services, Process });
+Object.assign(window, { Hero, Services, Process });

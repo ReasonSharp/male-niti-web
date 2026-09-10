@@ -103,8 +103,15 @@ const LYRICS = {
   },
 };
 
+// Render a string with one substring wrapped in <em>
+function emWrap(str, em) {
+  if (!em || !str || !str.includes(em)) return str;
+  const i = str.indexOf(em);
+  return <>{str.slice(0, i)}<em>{em}</em>{str.slice(i + em.length)}</>;
+}
+
 Object.assign(window, {
-  LangCtx, useLang, T, useT,
+  LangCtx, useLang, T, useT, emWrap,
   Monogram, Thread, Placeholder, Arrow, SectionHead,
   LYRICS,
 });

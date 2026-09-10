@@ -100,10 +100,7 @@ async function handleMockApi(req, res, pathname) {
   if (req.method === 'GET' && blogMatch) {
     const post = defaults.blog.find((p) => p.slug === decodeURIComponent(blogMatch[1]));
     if (!post) return sendJson(res, 404, { error: 'not found' });
-    // Mock only: api-spec.yaml requires body_hr/body_en on the full post,
-    // which the summary-only DEFAULT_BLOG doesn't carry — stand in with the
-    // excerpt so the endpoint shape matches the spec.
-    return sendJson(res, 200, { ...post, body_hr: post.excerpt_hr, body_en: post.excerpt_en });
+    return sendJson(res, 200, post);
   }
 
   if (req.method === 'POST' && pathname === '/api/contact') {
@@ -145,6 +142,8 @@ const PRODUCTION = process.env.MALE_NITI_PRODUCTION === '1';
 
 function isShippable(rel) {
   return rel === '/Male Niti.html'
+    || rel === '/blog.html'
+    || rel === '/blog-post.html'
     || rel === '/tweaks-panel.jsx'
     || rel === '/api-spec.yaml'
     || rel.startsWith('/hi-fi/');

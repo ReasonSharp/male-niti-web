@@ -67,6 +67,21 @@ function Work() {
               <dt><T hr="Korisnici" en="Users"/></dt>     <dd>{t(featured.users_hr, featured.users_en)}</dd>
               <dt><T hr="Status" en="Status"/></dt>       <dd>{t(featured.status_hr, featured.status_en)}</dd>
             </dl>
+
+            {(featured.demo_url || featured.post_slug) && (
+              <div className="work__links">
+                {featured.demo_url && (
+                  <a className="btn btn--primary" href={featured.demo_url}>
+                    {t(featured.demo_label_hr || 'Pogledaj demo', featured.demo_label_en || 'View the demo')}<Arrow/>
+                  </a>
+                )}
+                {featured.post_slug && (
+                  <a className="work__link-secondary" href={`blog-post.html?slug=${encodeURIComponent(featured.post_slug)}`}>
+                    {t('o funkcijama — bilješka', 'about the features — note')}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         </article>
         )}
@@ -78,6 +93,20 @@ function Work() {
               <div className="work__caption" style={{ marginTop: 12 }}>
                 <T hr={w.caption_hr} en={w.caption_en} />
               </div>
+              {(w.demo_url || w.post_slug) && (
+                <div className="work-secondary__links">
+                  {w.demo_url && (
+                    <a className="work-secondary__link" href={w.demo_url}>
+                      {t(w.demo_label_hr || 'demo', w.demo_label_en || 'demo')} <Arrow size={13}/>
+                    </a>
+                  )}
+                  {w.post_slug && (
+                    <a className="work__link-secondary" href={`blog-post.html?slug=${encodeURIComponent(w.post_slug)}`}>
+                      {t('bilješka', 'note')}
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -249,7 +278,7 @@ function Blog() {
               <p className="post__excerpt"><T hr={p.excerpt_hr} en={p.excerpt_en} /></p>
               <div className="post__foot">
                 <span className="post__read"><T hr={p.read_hr} en={p.read_en} /></span>
-                <a className="post__more" href={p.slug ? `#/blog/${p.slug}` : '#'}>
+                <a className="post__more" href={p.slug ? `blog-post.html?slug=${encodeURIComponent(p.slug)}` : 'blog.html'}>
                   <T hr="pročitaj" en="read" /> <Arrow size={14}/>
                 </a>
               </div>
@@ -262,7 +291,7 @@ function Blog() {
             <T hr="Tu zapisujem ono što sam u radu naučio — i ono na što sam se najviše živcirao."
                en="Where I write down what I’ve learned at work — and what I’ve been most annoyed by." />
           </p>
-          <a className="btn" href="#">
+          <a className="btn" href="blog.html">
             <T hr="sve bilješke" en="all notes" /><Arrow/>
           </a>
         </div>
@@ -368,25 +397,4 @@ function Contact() {
   );
 }
 
-// ── Footer ─────────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <footer className="container">
-      <div className="footer">
-        <div className="footer__brand">
-          <Monogram s={28} stroke={2.6} />
-          <span>© 2026 · Male Niti</span>
-        </div>
-        <div className="footer__links">
-          <a href="#"><T hr="impressum" en="imprint" /></a>
-          <a href="#"><T hr="privatnost" en="privacy" /></a>
-          <a href="#"><T hr="uvjeti" en="terms" /></a>
-          <a href="#">RSS</a>
-        </div>
-        <div><T hr="izrađeno s pažnjom — i s nekoliko niti" en="made with care — and a few threads" /></div>
-      </div>
-    </footer>
-  );
-}
-
-Object.assign(window, { Work, About, Pricing, Blog, Contact, Footer });
+Object.assign(window, { Work, About, Pricing, Blog, Contact });
