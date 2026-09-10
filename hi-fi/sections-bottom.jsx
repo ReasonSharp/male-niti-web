@@ -304,6 +304,7 @@ function Blog() {
 function Contact() {
   const t = useT();
   const [form, setForm] = React.useState({ name: '', email: '', kind: '', msg: '' });
+  const [consent, setConsent] = React.useState(false);
   const [state, setState] = React.useState('idle'); // idle | sending | sent | error
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
@@ -311,7 +312,7 @@ function Contact() {
     e.preventDefault();
     setState('sending');
     submitContact(form)
-      .then(() => { setState('sent'); setForm({ name: '', email: '', kind: '', msg: '' }); })
+      .then(() => { setState('sent'); setForm({ name: '', email: '', kind: '', msg: '' }); setConsent(false); })
       .catch(() => setState('error'));
   };
 
@@ -355,6 +356,14 @@ function Contact() {
             <div className="field">
               <label htmlFor="msg"><T hr="O čemu pričamo?" en="What are we talking about?" /></label>
               <textarea id="msg" rows="4" value={form.msg} onChange={set('msg')} placeholder={t('nekoliko rečenica — što gradite, što vas muči, kakav je rok', 'a few sentences — what you’re building, what worries you, what the deadline is')} />
+            </div>
+
+            <div className="field field--consent">
+              <input id="consent" type="checkbox" required checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+              <label htmlFor="consent">
+                <T hr={<>Slažem se da Male Niti prikupi podatke iz ovog obrasca radi odgovora na upit. Detalji u <a href="privatnost.html">politici privatnosti</a>.</>}
+                   en={<>I agree that Male Niti may collect the details in this form to reply to my enquiry. Details in the <a href="privatnost.html">privacy policy</a>.</>} />
+              </label>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 12 }}>

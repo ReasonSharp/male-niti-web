@@ -862,6 +862,25 @@ body.no-motion .thread-sway { animation: none !important; }
 .field--row { grid-template-columns: 1fr 1fr; gap: 32px; }
 .field--row > div { display: grid; gap: 6px; }
 
+.field--consent { display: flex; align-items: flex-start; gap: 10px; }
+.field--consent input[type="checkbox"] {
+  width: 17px; height: 17px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  accent-color: var(--indigo);
+  cursor: pointer;
+}
+.field--consent label {
+  font-family: var(--serif-body);
+  font-size: 14px;
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.field--consent label a { color: var(--indigo); text-decoration: underline; text-underline-offset: 2px; }
+
 .contact__aside .label { margin-bottom: 8px; }
 .contact__email {
   font-family: var(--serif-display);
