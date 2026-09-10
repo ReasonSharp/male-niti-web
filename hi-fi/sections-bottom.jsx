@@ -380,20 +380,16 @@ function Contact() {
 
           <aside className="contact__aside">
             <div className="label" style={{ marginBottom: 6 }}><T hr="ili direktno" en="or directly" /></div>
-            <a className="contact__email" href="mailto:bok@maleniti.hr">bok@maleniti.hr</a>
 
             <dl className="contact__lines">
               <div className="contact__line">
-                <dt>GitHub</dt><dd>github.com/maleniti</dd>
+                <dt>GitHub</dt><dd><a href="https://github.com/maleniti" target="_blank" rel="noopener noreferrer">github.com/maleniti</a></dd>
               </div>
               <div className="contact__line">
-                <dt>LinkedIn</dt><dd>linkedin.com/in/maleniti</dd>
+                <dt>RSS</dt><dd><a href="https://maleniti.com/api/feed.xml">maleniti.com/api/feed.xml</a></dd>
               </div>
               <div className="contact__line">
-                <dt>RSS</dt><dd>maleniti.hr/feed.xml</dd>
-              </div>
-              <div className="contact__line">
-                <dt><T hr="Lokacija" en="Location"/></dt><dd>{t('Zagreb · radim daljinski', 'Zagreb · remote')}</dd>
+                <dt><T hr="Lokacija" en="Location"/></dt><dd>{t('Međimurje · radim daljinski', 'Međimurje · remote')}</dd>
               </div>
               <div className="contact__line">
                 <dt><T hr="Jezici" en="Languages"/></dt><dd>{t('hrvatski, engleski', 'Croatian, English')}</dd>

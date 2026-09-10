@@ -88,7 +88,7 @@ function ImprintPage() {
 
       <LegalSection n="A2" hr="Kontakt" en="Contact">
         <Rows rows={[
-          { k_hr: 'E-mail', k_en: 'Email', v: <a href="mailto:pozdrav@maleniti.com">pozdrav@maleniti.com</a> },
+          { k_hr: 'E-mail', k_en: 'Email', v: <a href="Male Niti.html#kontakt"><T hr="putem obrasca za kontakt" en="via the contact form"/></a> },
           { k_hr: 'Telefon', k_en: 'Phone', v: <Fill hr={imprint.phone} en={imprint.phone} /> },
           { k_hr: 'Web', k_en: 'Web', v: <a href="https://maleniti.com">maleniti.com</a> },
         ]}/>
@@ -130,8 +130,8 @@ function ImprintPage() {
       </LegalSection>
 
       <LegalSection n="A7" hr="Rješavanje sporova" en="Dispute resolution">
-        <P hr="Prigovore možete poslati e-mailom na pozdrav@maleniti.com. Odgovor dobivate u pisanom obliku u roku od 15 dana od primitka prigovora."
-           en="Complaints can be sent by email to pozdrav@maleniti.com. You will receive a written reply within 15 days of receipt." />
+        <P hr={<>Prigovore možete poslati putem <a href="Male Niti.html#kontakt">obrasca za kontakt</a>. Odgovor dobivate u pisanom obliku u roku od 15 dana od primitka prigovora.</>}
+           en={<>Complaints can be sent via the <a href="Male Niti.html#kontakt">contact form</a>. You will receive a written reply within 15 days of receipt.</>} />
         <P hr="U slučaju spora primjenjuje se hrvatsko pravo, a nadležan je sud u sjedištu pružatelja usluga, osim ako je ugovorom s klijentom dogovoreno drugačije."
            en="In the event of a dispute, Croatian law applies and the court at the service provider’s registered seat has jurisdiction, unless agreed otherwise in the client contract." />
       </LegalSection>
@@ -149,8 +149,8 @@ function PrivacyPage() {
       updated_hr="10. IX. 2026." updated_en="Sep 10, 2026">
 
       <LegalSection n="B1" hr="Voditelj obrade" en="Data controller">
-        <P hr="Voditelj obrade osobnih podataka je Male Niti, s podacima navedenima u impressumu. Za sva pitanja o podacima pišite na pozdrav@maleniti.com."
-           en="The controller of personal data is Male Niti, with the details listed in the imprint. For any question about your data, write to pozdrav@maleniti.com." />
+        <P hr={<>Voditelj obrade osobnih podataka je Male Niti, s podacima navedenima u impressumu. Za sva pitanja o podacima pišite putem <a href="Male Niti.html#kontakt">obrasca za kontakt</a>.</>}
+           en={<>The controller of personal data is Male Niti, with the details listed in the imprint. For any question about your data, write via the <a href="Male Niti.html#kontakt">contact form</a>.</>} />
       </LegalSection>
 
       <LegalSection n="B2" hr="Kontakt obrazac" en="Contact form">

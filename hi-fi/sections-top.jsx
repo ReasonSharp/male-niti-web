@@ -18,7 +18,7 @@ function Hero() {
       <div className="hero__grid">
         <div>
           <div className="label label-accent" style={{ marginBottom: 28 }}>
-            Vol. 01 · MMXXVI · <T hr="Zagreb" en="Zagreb" />
+            Vol. 01 · MMXXVI · <T hr="Međimurje" en="Međimurje" />
           </div>
 
           <h1 className="display hero__title">

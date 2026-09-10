@@ -882,17 +882,6 @@ body.no-motion .thread-sway { animation: none !important; }
 .field--consent label a { color: var(--indigo); text-decoration: underline; text-underline-offset: 2px; }
 
 .contact__aside .label { margin-bottom: 8px; }
-.contact__email {
-  font-family: var(--serif-display);
-  font-weight: 700;
-  font-size: 42px;
-  color: var(--indigo);
-  letter-spacing: -0.005em;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 18px;
-}
-.contact__email:hover { color: var(--indigo-deep); }
 .contact__lines { display: flex; flex-direction: column; gap: 14px; }
 .contact__line {
   display: grid;
@@ -910,6 +899,8 @@ body.no-motion .thread-sway { animation: none !important; }
   color: var(--ink-fade);
 }
 .contact__line dd { margin: 0; font-family: var(--serif-body); font-size: 16px; }
+.contact__line dd a { color: var(--indigo); text-decoration: none; }
+.contact__line dd a:hover { color: var(--indigo-deep); text-decoration: underline; }
 
 /* ── blog pages: page masthead ──────────────────────── */
 .page-head{display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:start;padding:64px 0 40px}

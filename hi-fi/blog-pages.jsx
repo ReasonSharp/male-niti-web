@@ -180,7 +180,7 @@ function BlogPostPage() {
 
           <div className="post-sign">
             <Monogram s={34} />
-            <span className="label"><T hr="Male Niti · Zagreb" en="Male Niti · Zagreb" /></span>
+            <span className="label"><T hr="Male Niti · Međimurje" en="Male Niti · Međimurje" /></span>
           </div>
 
           <nav className="post-nav">
