@@ -93,7 +93,7 @@ function SiteFooter({ base = '' }) {
           <a href={`${base}#kontakt`}><T hr="kontakt" en="contact" /></a>
           <a href="impressum.html"><T hr="impressum" en="imprint" /></a>
           <a href="privatnost.html"><T hr="privatnost" en="privacy" /></a>
-          <a href="feed.xml">RSS</a>
+          <a href="api/feed.xml">RSS</a>
         </div>
         <div><T hr="izrađeno s pažnjom — i s nekoliko niti" en="made with care — and a few threads" /></div>
       </div>
