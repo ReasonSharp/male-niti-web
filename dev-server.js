@@ -9,8 +9,10 @@
 //     real API exists and swap it in once it does:
 //       * default: an in-process mock implementing api-spec.yaml, backed by
 //         the *actual* DEFAULT_SERVICES/DEFAULT_PRICING/DEFAULT_BLOG/
-//         DEFAULT_WORK data from hi-fi/content.jsx (loaded via vm, so the
-//         mock can't drift from the frontend's own fallback data).
+//         DEFAULT_WORK/DEFAULT_IMPRINT data from hi-fi/content.jsx (loaded
+//         via vm, so the mock can't drift from the frontend's own fallback
+//         data). /feed.xml is not mocked — it's a backend-generated RSS
+//         feed with no frontend fallback data to source it from.
 //       * if MALE_NITI_API_PROXY (or --proxy) is set, every /api/* request
 //         is instead forwarded to that base URL — point it at your real API
 //         dev server once it's running.
@@ -70,6 +72,7 @@ function loadDefaults() {
     pricing: sandboxWindow.DEFAULT_PRICING,
     blog: sandboxWindow.DEFAULT_BLOG,
     work: sandboxWindow.DEFAULT_WORK,
+    imprint: sandboxWindow.DEFAULT_IMPRINT,
   };
 }
 
@@ -95,6 +98,7 @@ async function handleMockApi(req, res, pathname) {
   if (req.method === 'GET' && pathname === '/api/pricing') return sendJson(res, 200, defaults.pricing);
   if (req.method === 'GET' && pathname === '/api/work') return sendJson(res, 200, defaults.work);
   if (req.method === 'GET' && pathname === '/api/blog') return sendJson(res, 200, defaults.blog);
+  if (req.method === 'GET' && pathname === '/api/imprint') return sendJson(res, 200, defaults.imprint);
 
   const blogMatch = pathname.match(/^\/api\/blog\/([^/]+)$/);
   if (req.method === 'GET' && blogMatch) {
@@ -144,6 +148,8 @@ function isShippable(rel) {
   return rel === '/Male Niti.html'
     || rel === '/blog.html'
     || rel === '/blog-post.html'
+    || rel === '/impressum.html'
+    || rel === '/privatnost.html'
     || rel === '/tweaks-panel.jsx'
     || rel === '/api-spec.yaml'
     || rel.startsWith('/hi-fi/');

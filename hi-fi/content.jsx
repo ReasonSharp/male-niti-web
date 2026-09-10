@@ -212,7 +212,27 @@ const DEFAULT_WORK = [
     demo_url: null, post_slug: null },
 ];
 
+// Registration/business details for the imprint page. Fields hold bracketed
+// placeholder text until the real API supplies them — the imprint page
+// flags any such value visually (see .legal-fill in hi-fi/styles.css) so a
+// stale placeholder can't ship unnoticed.
+const DEFAULT_IMPRINT = {
+  legal_name: 'Male Niti — [pun pravni naziv]',
+  legal_form_hr: '[obrt / j.d.o.o. / d.o.o.]', legal_form_en: '[sole trader / j.d.o.o. / d.o.o.]',
+  owner_name: '[ime i prezime]',
+  address: '[ulica i broj, poštanski broj, grad, Hrvatska]',
+  oib: '[11 cifara]',
+  registration_number: '[MBS ili matični broj obrta]',
+  register_hr: '[Trgovački sud u … / Obrtni registar …]', register_en: '[Commercial Court in … / Trade Register …]',
+  vat_status_hr: '[u sustavu PDV-a / nije u sustavu PDV-a]', vat_status_en: '[VAT registered / not VAT registered]',
+  phone: '[+385 …]',
+  bank_name: '[naziv banke]',
+  iban: '[HR00 0000 0000 0000 0000 0]',
+  swift: '[XXXXHR2X]',
+  hosting_provider: '[pružatelj / lokacija podatkovnog centra]',
+};
+
 Object.assign(window, {
   API_BASE, useApiList, useApiItem, useSlugParam, submitContact,
-  DEFAULT_SERVICES, DEFAULT_PRICING, DEFAULT_BLOG, DEFAULT_WORK,
+  DEFAULT_SERVICES, DEFAULT_PRICING, DEFAULT_BLOG, DEFAULT_WORK, DEFAULT_IMPRINT,
 });

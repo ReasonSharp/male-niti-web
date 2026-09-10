@@ -91,9 +91,9 @@ function SiteFooter({ base = '' }) {
         <div className="footer__links">
           <a href="blog.html"><T hr="blog" en="blog" /></a>
           <a href={`${base}#kontakt`}><T hr="kontakt" en="contact" /></a>
-          <a href="#"><T hr="impressum" en="imprint" /></a>
-          <a href="#"><T hr="privatnost" en="privacy" /></a>
-          <a href="#">RSS</a>
+          <a href="impressum.html"><T hr="impressum" en="imprint" /></a>
+          <a href="privatnost.html"><T hr="privatnost" en="privacy" /></a>
+          <a href="feed.xml">RSS</a>
         </div>
         <div><T hr="izrađeno s pažnjom — i s nekoliko niti" en="made with care — and a few threads" /></div>
       </div>
