@@ -56,6 +56,7 @@ body {
   margin: 0 auto;
   position: relative;
   overflow: hidden;
+  padding-top: var(--header-h, 104px);
 }
 
 .container {
@@ -67,6 +68,7 @@ body {
 .section {
   padding: 100px 0;
   position: relative;
+  scroll-margin-top: var(--header-h, 104px);
 }
 .section--tight { padding: 72px 0; }
 .section--alt   { background: var(--paper-2); }
@@ -283,13 +285,31 @@ body.no-motion .thread-sway { animation: none !important; }
   border-color: rgba(255,255,255,0.12);
 }
 
+/* ── site header (fixed, shrinks on scroll) ──────────── */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(246, 241, 228, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.site-header.is-scrolled {
+  border-bottom-color: var(--rule);
+  box-shadow: 0 8px 24px rgba(27, 26, 22, 0.06);
+}
+
 /* ── nav ────────────────────────────────────────────── */
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 28px 0;
+  transition: padding .25s ease;
 }
+.site-header.is-scrolled .nav { padding: 14px 0; }
 .nav__brand { display: flex; align-items: center; gap: 14px; }
 .nav__brand-name {
   font-family: var(--serif-display);
@@ -305,6 +325,15 @@ body.no-motion .thread-sway { animation: none !important; }
   text-transform: uppercase;
   color: var(--ink-fade);
   margin-top: 4px;
+  overflow: hidden;
+  max-height: 16px;
+  opacity: 1;
+  transition: max-height .2s ease, opacity .15s ease, margin-top .2s ease;
+}
+.site-header.is-scrolled .nav__brand-tag {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
 }
 .nav__links { display: flex; gap: 28px; }
 .nav__links a {

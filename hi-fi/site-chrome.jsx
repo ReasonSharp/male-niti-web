@@ -19,6 +19,15 @@ function useSiteLang() {
 }
 
 function SiteHeader({ lang, setLang, base = '', current = '' }) {
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const links = [
     { href: `${base}#usluge`,   hr: 'usluge',   en: 'services', key: 'usluge' },
     { href: `${base}#proces`,   hr: 'proces',   en: 'process',  key: 'proces' },
@@ -27,31 +36,46 @@ function SiteHeader({ lang, setLang, base = '', current = '' }) {
     { href: 'blog.html',        hr: 'blog',     en: 'blog',     key: 'blog' },
     { href: `${base}#kontakt`,  hr: 'kontakt',  en: 'contact',  key: 'kontakt' },
   ];
+
+  // Same-page section links: animate the scroll instead of an instant jump.
+  // Cross-page links (from the blog pages, where `base` is set) navigate
+  // normally — the landing page's own mount effect positions the section.
+  const handleNavClick = (e, href) => {
+    if (base || !href.startsWith('#')) return;
+    const el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    history.pushState(null, '', href);
+  };
   return (
-    <header className="container">
-      <nav className="nav">
-        <a href={base || '#'} className="nav__brand" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Monogram s={42} />
-          <div className="flex-col">
-            <span className="nav__brand-name">Male Niti</span>
-            <span className="nav__brand-tag"><T hr="male web stranice · male aplikacije" en="small sites · small apps" /></span>
+    <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
+      <div className="container">
+        <nav className="nav">
+          <a href={base || '#'} className="nav__brand" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Monogram s={42} />
+            <div className="flex-col">
+              <span className="nav__brand-name">Male Niti</span>
+              <span className="nav__brand-tag"><T hr="male web stranice · male aplikacije" en="small sites · small apps" /></span>
+            </div>
+          </a>
+
+          <div className="nav__links">
+            {links.map((l) => (
+              <a key={l.key} href={l.href} className={current === l.key ? 'is-current' : ''} onClick={(e) => handleNavClick(e, l.href)}>
+                <T hr={l.hr} en={l.en} />
+              </a>
+            ))}
           </div>
-        </a>
 
-        <div className="nav__links">
-          {links.map((l) => (
-            <a key={l.key} href={l.href} className={current === l.key ? 'is-current' : ''}>
-              <T hr={l.hr} en={l.en} />
-            </a>
-          ))}
-        </div>
-
-        <div className="nav__lang">
-          <button className={lang === 'hr' ? 'active' : ''} onClick={() => setLang('hr')}>HR</button>
-          <span className="sep">·</span>
-          <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
-        </div>
-      </nav>
+          <div className="nav__lang">
+            <button className={lang === 'hr' ? 'active' : ''} onClick={() => setLang('hr')}>HR</button>
+            <span className="sep">·</span>
+            <button className={lang === 'en' ? 'active' : ''} onClick={() => setLang('en')}>EN</button>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

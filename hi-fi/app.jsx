@@ -17,6 +17,15 @@ function App() {
     document.documentElement.lang = tweaks.lang;
   }, [tweaks.lang]);
 
+  // Cross-page nav links (e.g. blog.html -> Male Niti.html#usluge) land here
+  // before React has mounted the section, so the browser's own initial
+  // scroll-to-fragment misses it — do it ourselves once mounted.
+  React.useEffect(() => {
+    if (!window.location.hash) return;
+    const el = document.querySelector(window.location.hash);
+    if (el) el.scrollIntoView();
+  }, []);
+
   const setLang = (v) => setTweak('lang', v);
 
   return (
