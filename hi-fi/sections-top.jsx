@@ -36,11 +36,11 @@ function Hero() {
           </p>
 
           <div className="hero__ctas">
-            <a className="btn btn--primary" href="#kontakt">
+            <a className="btn btn--primary" href="#kontakt" onClick={(e) => smoothScrollToHash(e, '#kontakt')}>
               <T hr="Reci mi o svom projektu" en="Tell me about your project" />
               <Arrow />
             </a>
-            <a className="btn btn--green" href="#radovi">
+            <a className="btn btn--green" href="#radovi" onClick={(e) => smoothScrollToHash(e, '#radovi')}>
               <T hr="Pogledaj radove" en="See work" />
             </a>
           </div>
@@ -104,7 +104,7 @@ function Services() {
             <T hr="Ne radim WordPress, Wix ni Shopify. Pravim aplikacije koje rade točno ono što vam treba — i koje rastu s vama."
                en="No WordPress, Wix, or Shopify. Bespoke apps that do exactly what you need — and grow with you." />
           </p>
-          <a className="post__more" href="#kontakt">
+          <a className="post__more" href="#kontakt" onClick={(e) => smoothScrollToHash(e, '#kontakt')}>
             <T hr="dogovorite razgovor" en="book a call" /> <Arrow size={14}/>
           </a>
         </div>

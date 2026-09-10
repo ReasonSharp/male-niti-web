@@ -110,8 +110,21 @@ function emWrap(str, em) {
   return <>{str.slice(0, i)}<em>{em}</em>{str.slice(i + em.length)}</>;
 }
 
+// Animate same-page in-page anchor links instead of an instant jump.
+// Cross-page links (a non-empty `base`, e.g. from the blog pages) navigate
+// normally — the landing page's own mount effect positions the section.
+function smoothScrollToHash(e, href, base = '') {
+  if (base || !href.startsWith('#')) return;
+  const el = document.querySelector(href);
+  if (!el) return;
+  e.preventDefault();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  history.pushState(null, '', href);
+}
+
 Object.assign(window, {
   LangCtx, useLang, T, useT, emWrap,
   Monogram, Thread, Placeholder, Arrow, SectionHead,
-  LYRICS,
+  LYRICS, smoothScrollToHash,
 });

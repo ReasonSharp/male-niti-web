@@ -37,18 +37,7 @@ function SiteHeader({ lang, setLang, base = '', current = '' }) {
     { href: `${base}#kontakt`,  hr: 'kontakt',  en: 'contact',  key: 'kontakt' },
   ];
 
-  // Same-page section links: animate the scroll instead of an instant jump.
-  // Cross-page links (from the blog pages, where `base` is set) navigate
-  // normally — the landing page's own mount effect positions the section.
-  const handleNavClick = (e, href) => {
-    if (base || !href.startsWith('#')) return;
-    const el = document.querySelector(href);
-    if (!el) return;
-    e.preventDefault();
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-    history.pushState(null, '', href);
-  };
+  const handleNavClick = (e, href) => smoothScrollToHash(e, href, base);
   return (
     <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
       <div className="container">
